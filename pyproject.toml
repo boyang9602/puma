@@ -14,3 +14,7 @@ disable = "C0330, C0326, C0114, E1120, C0116, C0103, E1101, R0914, R0915, R0913"
 
 [tool.pylint.format]
 max-line-length = "80"
+
+[build-system]
+requires = ["setuptools", "wheel", "pybind11"]
+build-backend = "setuptools.build_meta"

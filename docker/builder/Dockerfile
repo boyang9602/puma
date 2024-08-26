@@ -14,10 +14,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     python3-dev \
     python3-pip \
     wget \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Open3D system dependencies
-RUN apt-get update && apt-get install --no-install-recommends -y \
     libgl1 \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
@@ -26,20 +22,21 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 RUN pip install --upgrade pip
 
 # Install Python dependencies
-RUN pip install --no-cache-dir --upgrade \
-    black \
-    pybind11 \
-    setuptools
+RUN pip3 install --no-cache-dir --upgrade black pybind11
+
+RUN pip3 install setuptools==65
 
 # Install modern version of Open3D
-RUN pip install --upgrade --pre \
-    https://files.pythonhosted.org/packages/10/02/4f777e87131b3e111f91e16c1782da707b8b6a5777dbbe11a19e0dc7d1a3/open3d-0.15.2-cp38-cp38-manylinux_2_27_x86_64.whl
+# RUN pip install --upgrade --pre \
+#     https://files.pythonhosted.org/packages/10/02/4f777e87131b3e111f91e16c1782da707b8b6a5777dbbe11a19e0dc7d1a3/open3d-0.15.2-cp38-cp38-manylinux_2_27_x86_64.whl
+
+RUN pip3 install open3d==0.18.0
 
 # Install puma
 COPY . /puma
 RUN cd /puma \
-    && pip install --no-cache-dir --requirement requirements.txt \
-    && pip install --no-cache-dir --upgrade . \
+    && pip3 install --no-cache-dir --requirement requirements.txt \
+    && pip3 install --no-cache-dir --upgrade . \
     && rm -rf /puma
 
 # Install 3rdparty dependencies, split dependencies for separate docker overlays

@@ -67,7 +67,7 @@ def main(config, dataset, n_scans, sequence, odometry_only):
     \b
     kitti/ply
     ├── poses
-    │   └── 00.txt
+    |   └── 00.txt
     └── sequences
         └── 00
             ├── calib.txt
