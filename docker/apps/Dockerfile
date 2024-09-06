@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     silversearcher-ag \
     tree \
     vim \
-    zsh \
     && rm -rf /var/lib/apt/lists/*
 
 # Add user to share files between container and host system
